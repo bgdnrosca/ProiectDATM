@@ -14,6 +14,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using BluetoothChat.Helpers;
+using BluetoothChat.UI;
+using GalaSoft.MvvmLight.Views;
 
 namespace BluetoothChat
 {
@@ -60,6 +63,12 @@ namespace BluetoothChat
                 {
                     //TODO: Load state from previously suspended application
                 }
+                NavigationService navService = new NavigationService();
+
+                navService.Configure("ShellView", typeof(ShellView));
+                navService.Configure("BluetoothServerView", typeof(BluetoothServerView));
+
+                var navManager = new NavigationHelper(navService);
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
@@ -72,7 +81,7 @@ namespace BluetoothChat
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    rootFrame.Navigate(typeof(ShellView), e.Arguments);
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
@@ -101,6 +110,13 @@ namespace BluetoothChat
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+        private static INavigationService CreateNavigationService()
+        {
+            INavigationService navigationService = new NavigationService();
+
+            return navigationService;
         }
     }
 }
