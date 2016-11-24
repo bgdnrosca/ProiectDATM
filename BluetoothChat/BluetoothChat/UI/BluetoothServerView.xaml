@@ -10,11 +10,7 @@
     <Grid Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="AUto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock
             Grid.Row="0"
@@ -24,6 +20,8 @@
             FontWeight="Bold"
             Foreground="WhiteSmoke"
             Style="{StaticResource HeaderTextBlockStyle}"
-            Text="Chat - Server Side" />
+        <Image 
+                Grid.Row="1"
+                Source="ms-appx:///Assets/Bluetooth-logo.png" />
     </Grid>
 </Page>
