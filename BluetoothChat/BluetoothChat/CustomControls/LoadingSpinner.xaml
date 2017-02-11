@@ -1,0 +1,54 @@
+﻿<UserControl
+    x:Class="BluetoothChat.CustomControls.LoadingSpinner"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:BluetoothChat.CustomControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Storyboard x:Name="OpacityStoryboard">
+            <DoubleAnimation
+                x:Name="OpacityAnimation"
+                Completed="OpacityAnimation_OnCompleted"
+                Storyboard.TargetName="RelativePanel"
+                Storyboard.TargetProperty="(UIElement.Opacity)"
+                Duration="0:0:0.5" />
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot">
+        <RelativePanel
+            x:Name="RelativePanel"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Visibility="Collapsed">
+            <RelativePanel.Background>
+                <SolidColorBrush Opacity="{x:Bind BackgroundOpacity, Mode=OneWay}" Color="Black" />
+            </RelativePanel.Background>
+            <Grid
+                x:Name="LoadingProgress"
+                HorizontalAlignment="Center"
+                RelativePanel.AlignHorizontalCenterWithPanel="True"
+                RelativePanel.AlignVerticalCenterWithPanel="True">
+
+                <ProgressRing
+                    Width="50"
+                    Height="50"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    IsActive="{x:Bind IsExecuting, Mode=OneWay}" />
+            </Grid>
+            <TextBlock
+                Margin="15"
+                FontSize="18"
+                RelativePanel.AlignHorizontalCenterWithPanel="True"
+                RelativePanel.AlignVerticalCenterWithPanel="True"
+                RelativePanel.Below="LoadingProgress"
+                Text="Loading"
+                TextAlignment="Center"
+                TextWrapping="WrapWholeWords" />
+        </RelativePanel>
+    </Grid>
+</UserControl>

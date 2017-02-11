@@ -95,8 +95,15 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\INavigationService.cs" />
-    <Compile Include="Helpers\NavigationHelper.cs" />
+    <Compile Include="Converters\Converters.cs" />
+    <Compile Include="CustomControls\LoadingSpinner.xaml.cs">
+      <DependentUpon>LoadingSpinner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Constants.cs" />
+    <Compile Include="Helpers\ItemClickCommand.cs" />
+    <Compile Include="Helpers\NavigablePage.cs" />
+    <Compile Include="Helpers\NavigationService.cs" />
+    <Compile Include="Helpers\TaskAdapter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -104,10 +111,15 @@
     <Compile Include="UI\BluetoothClientView.xaml.cs">
       <DependentUpon>BluetoothClientView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\BluetoothClientViewModel.cs" />
     <Compile Include="UI\BluetoothServerView.xaml.cs">
       <DependentUpon>BluetoothServerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\BluetoothServerViewModel.cs" />
+    <Compile Include="UI\LandingPageView.xaml.cs">
+      <DependentUpon>LandingPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\LandingPageViewModel.cs" />
     <Compile Include="UI\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
     </Compile>
@@ -126,6 +138,7 @@
     <Content Include="Assets\bluetooth-red.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\BluetoothBackground.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -140,6 +153,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="CustomControls\LoadingSpinner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -149,6 +166,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\BluetoothServerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\LandingPageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
