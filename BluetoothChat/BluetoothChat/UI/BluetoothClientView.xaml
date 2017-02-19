@@ -14,25 +14,23 @@
         <converters:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter" />
     </helpers:NavigablePage.Resources>
     <Grid VerticalAlignment="Stretch">
-        <customControls:BackgroundImageControl
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch" />
+        <customControls:BackgroundImageControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
         <Grid x:Name="ConnectToDeviceView" Visibility="{x:Bind Vm.ClientViewType, Mode=OneWay, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter='BluetoothConnectView'}">
             <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <ListView
-                    Grid.Row="1"
-                    helpers:ItemClickCommand.Command="{x:Bind Vm.DeviceSelectedCommand}"
-                    IsItemClickEnabled="True"
+                Grid.Row="2"
                 HorizontalAlignment="Center"
                 HorizontalContentAlignment="Center"
-                    ItemsSource="{x:Bind Vm.AvailableDevices, Mode=OneWay}">
+                helpers:ItemClickCommand.Command="{x:Bind Vm.DeviceSelectedCommand}"
+                IsItemClickEnabled="True"
+                ItemsSource="{x:Bind Vm.AvailableDevices, Mode=OneWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="enumeration:DeviceInformation">
                         <TextBlock Text="{x:Bind Name}" />
@@ -40,58 +38,75 @@
                 </ListView.ItemTemplate>
             </ListView>
             <Button
-                    Grid.Row="3"
-                    Width="216"
-                    Height="50"
-                    HorizontalAlignment="Center"
-                    Command="{x:Bind Vm.StartSearch, Mode=OneWay}"
-                    Content="Start Search" />
+                Grid.Row="3"
+                Width="216"
+                Height="50"
+                HorizontalAlignment="Center"
+                Background="Blue"
+                Command="{x:Bind Vm.StartSearch, Mode=OneWay}"
+                Content="Start Search"
+                Foreground="White"
+                Opacity="0.7" />
 
             <Button
-                    Grid.Row="4"
-                    Width="216"
-                    Height="50"
-                    HorizontalAlignment="Center"
-                        Command="{x:Bind Vm.StopSearch, Mode=OneWay}"
-                        Content="Stop Search" />
+                Grid.Row="4"
+                Width="216"
+                Height="50"
+                HorizontalAlignment="Center"
+                Background="Blue"
+                Command="{x:Bind Vm.StopSearch, Mode=OneWay}"
+                Content="Stop Search"
+                Foreground="White"
+                Opacity="0.7" />
         </Grid>
-        <Grid x:Name="Chatview" Visibility="{x:Bind Vm.ClientViewType, Mode=OneWay, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter='ChatView'}">
-            <Grid>
-                <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock
-                            Margin="0,0,0,10"
-                            Text="Connected to: "
-                            TextWrapping="Wrap" />
-                        <TextBlock Text="{x:Bind Vm.BluetoothDevice.Name, Mode=OneWay}" />
-                    </StackPanel>
-                    <Button Command="{x:Bind Vm.DisconnectCommand, Mode=OneWay}" Content="Disconnect" />
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <TextBlock Grid.ColumnSpan="2" TextWrapping="Wrap">Enter a message to send:</TextBlock>
-                        <TextBox
-                            x:Name="MessageTextBox"
-                            Grid.Row="1"
-                            Grid.Column="0"
-                            Margin="0,10,10,0"
-                            KeyDown="KeyboardKey_Pressed" />
-                        <Button
-                            x:Name="SendButton"
-                            Grid.Row="1"
+        <Grid 
+            Margin="15"
+            x:Name="Chatview" 
+            Visibility="{x:Bind Vm.ClientViewType, Mode=OneWay, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter='ChatView'}">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock
+                                Margin="0,0,0,10"
+                                Text="Connected to: "
+                                TextWrapping="Wrap" />
+                    <TextBlock Text="{x:Bind Vm.BluetoothDevice.Name, Mode=OneWay}" />
+                </StackPanel>
+                <Button
                             Grid.Column="1"
-                            Margin="5,10,10,0"
-                            Click="SendButton_OnClick"
-                            Content="Send" />
-                        <ListBox
-                            Grid.Row="2"
+                            Command="{x:Bind Vm.DisconnectCommand, Mode=OneWay}"
+                            Content="Disconnect" />
+            </Grid>
+            <Border 
+                        Grid.Row="1"
+                        Background="Black"
+                        Height="5"
+                        BorderThickness="5"
+                        BorderBrush="Black"/>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <ListBox
+                            Background="Transparent"
+                            Grid.Row="0"
+                            Grid.Column="0"
                             Grid.ColumnSpan="2"
                             Margin="0,10,0,0"
                             HorizontalAlignment="Stretch"
@@ -99,12 +114,27 @@
                             ItemsSource="{x:Bind Vm.MessageBoxList, Mode=OneWay}"
                             ScrollViewer.HorizontalScrollBarVisibility="Auto"
                             ScrollViewer.HorizontalScrollMode="Auto" />
-                    </Grid>
-                </StackPanel>
+                <TextBlock
+                            Grid.Row="1"
+                            Grid.ColumnSpan="1"
+                            TextWrapping="Wrap">
+                            Enter a message to send:
+                </TextBlock>
+                <TextBox
+                            x:Name="MessageTextBox"
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Margin="0,10,10,0"
+                            KeyDown="KeyboardKey_Pressed" />
+                <Button
+                            x:Name="SendButton"
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Margin="5,10,10,0"
+                            Click="SendButton_OnClick"
+                            Content="Send" />
             </Grid>
         </Grid>
-        <customControls:LoadingSpinner
-             VerticalAlignment="Stretch"
-             IsExecuting="{Binding LoadingTask.IsExecuting, Mode=OneWay}" />
+        <customControls:LoadingSpinner VerticalAlignment="Stretch" IsExecuting="{Binding LoadingTask.IsExecuting, Mode=OneWay}" />
     </Grid>
 </helpers:NavigablePage>

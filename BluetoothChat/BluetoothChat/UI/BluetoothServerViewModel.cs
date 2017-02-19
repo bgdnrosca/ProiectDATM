@@ -202,7 +202,6 @@ namespace BluetoothChat.UI
                      {
                          MessageBoxList.Clear();
                          RemoteDevice = remoteDevice;
-                         MessageBoxList.Add("Conected to Client " + remoteDevice?.Name ?? string.Empty);
                          ServerViewType = ServerViewType.ChatView;
                      });
 

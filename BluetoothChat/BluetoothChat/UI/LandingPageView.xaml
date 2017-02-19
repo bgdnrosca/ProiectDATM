@@ -12,9 +12,9 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -27,6 +27,7 @@
         <Button
             Background="Blue"
             Foreground="White"
+            Opacity="0.7"
             Grid.Row="3"
             Width="216"
             Height="50"
@@ -41,6 +42,7 @@
             Background="Blue"
             Foreground="White"
             Grid.Row="4"
+            Opacity="0.7"
             Width="216"
             Height="50"
             HorizontalAlignment="Center"
