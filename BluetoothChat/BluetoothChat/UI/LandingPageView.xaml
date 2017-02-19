@@ -7,6 +7,7 @@
     xmlns:local="using:BluetoothChat.UI"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:system="using:System"
+    xmlns:customControls="using:BluetoothChat.CustomControls"
     mc:Ignorable="d">
 
     <Grid>
@@ -18,12 +19,11 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Image
+        <customControls:BackgroundImageControl
             Grid.RowSpan="6"
             HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            Source="ms-appx:///Assets/BluetoothBackground.png"
-            Stretch="Fill" />
+            VerticalAlignment="Stretch"/>
+       
         <Button
             Background="Blue"
             Foreground="White"

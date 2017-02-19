@@ -6,12 +6,18 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:helpers="using:BluetoothChat.Helpers"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:customControls="using:BluetoothChat.CustomControls"
     mc:Ignorable="d">
     <helpers:NavigablePage.Resources>
         <converters:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter" />
     </helpers:NavigablePage.Resources>
 
     <Grid>
+
+        <customControls:BackgroundImageControl
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"/>
+
         <Grid x:Name="SetupServer" Visibility="{x:Bind Vm.ServerViewType, Mode=OneWay, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter='SetupServer'}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />

@@ -6,6 +6,9 @@ using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
+using Windows.Foundation.Metadata;
+using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -35,6 +38,7 @@ namespace BluetoothChat
             this.Suspending += OnSuspending;
         }
 
+
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
         /// will be used such as when the application is launched to open a specific file.
@@ -43,7 +47,7 @@ namespace BluetoothChat
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
-            ApplicationView.PreferredLaunchViewSize = new Size(360, 800);
+            ApplicationView.PreferredLaunchViewSize = new Size(360, 900);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
             // Do not repeat app initialization when the Window already has content,
@@ -68,6 +72,14 @@ namespace BluetoothChat
                 }
                 Window.Current.Content = m_shell;
             }
+            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
+            {
+                var statusBar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
+                statusBar.BackgroundColor = Windows.UI.Colors.Black;
+                statusBar.BackgroundOpacity = 1;
+                statusBar.ForegroundColor = Colors.White;
+            }
+
             // Ensure the current window is active
             Window.Current.Activate();
         }

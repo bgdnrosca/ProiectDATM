@@ -2,6 +2,8 @@
 using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
+using Windows.UI.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace BluetoothChat.Helpers
@@ -25,6 +27,9 @@ namespace BluetoothChat.Helpers
         public NavigationService(Frame navigationFrame)
         {
             m_root = navigationFrame;
+            SystemNavigationManager.GetForCurrentView().BackRequested += MainPage_BackRequested;
+            var currentView = SystemNavigationManager.GetForCurrentView();
+            currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
         }
 
         public void Navigate(ViewModelBase viewModel)
@@ -37,6 +42,15 @@ namespace BluetoothChat.Helpers
             where TViewModel : ViewModelBase
         {
             m_map[typeof(TViewModel)] = typeof(TView);
+        }
+
+        private void MainPage_BackRequested(object sender, BackRequestedEventArgs e)
+        {
+            if (m_root.CanGoBack)
+            {
+                m_root.GoBack();
+                e.Handled = true;
+            }
         }
     }
 }

@@ -14,45 +14,46 @@
         <converters:EnumToVisibilityConverter x:Key="EnumToVisibilityConverter" />
     </helpers:NavigablePage.Resources>
     <Grid VerticalAlignment="Stretch">
+        <customControls:BackgroundImageControl
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch" />
         <Grid x:Name="ConnectToDeviceView" Visibility="{x:Bind Vm.ClientViewType, Mode=OneWay, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter='BluetoothConnectView'}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Button
-                        Grid.Column="0"
-                        Command="{x:Bind Vm.StartSearch, Mode=OneWay}"
-                        Content="Start Search" />
-                    <Button
-                        Grid.Column="1"
-                        Command="{x:Bind Vm.StopSearch, Mode=OneWay}"
-                        Content="Stop Search" />
-                </Grid>
-                <ListView
+            <ListView
                     Grid.Row="1"
                     helpers:ItemClickCommand.Command="{x:Bind Vm.DeviceSelectedCommand}"
                     IsItemClickEnabled="True"
+                HorizontalAlignment="Center"
+                HorizontalContentAlignment="Center"
                     ItemsSource="{x:Bind Vm.AvailableDevices, Mode=OneWay}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="enumeration:DeviceInformation">
-                            <TextBlock Text="{x:Bind Name}" />
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Grid>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="enumeration:DeviceInformation">
+                        <TextBlock Text="{x:Bind Name}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button
+                    Grid.Row="3"
+                    Width="216"
+                    Height="50"
+                    HorizontalAlignment="Center"
+                    Command="{x:Bind Vm.StartSearch, Mode=OneWay}"
+                    Content="Start Search" />
+
+            <Button
+                    Grid.Row="4"
+                    Width="216"
+                    Height="50"
+                    HorizontalAlignment="Center"
+                        Command="{x:Bind Vm.StopSearch, Mode=OneWay}"
+                        Content="Stop Search" />
         </Grid>
         <Grid x:Name="Chatview" Visibility="{x:Bind Vm.ClientViewType, Mode=OneWay, Converter={StaticResource EnumToVisibilityConverter}, ConverterParameter='ChatView'}">
             <Grid>
